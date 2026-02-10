@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hearts span {
+  position: absolute;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 22px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background: #999;
+  color: white;
+  position: absolute;
+}
+
+.photos {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.photos img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  margin: 4px;
+  object-fit: cover;
+}
+
+.message {
+  display: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<div class="container">
+  <div class="photos" id="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+
+  <h1>SANGITA (SANU)<br>WILL YOU BE MY VALENTINE ? 💘</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 💔</button>
+  </div>
+
+  <div class="message" id="message">
+    Malai tha thiyo tmle maya garxau budi 💕
+  </div>
+</div>
+
+<audio id="loveAudio" src="love.mp3"></audio>
+
+<script>
+// floating hearts
+const hearts = document.querySelector('.hearts');
+setInterval(() => {
+  const heart = document.createElement('span');
+  heart.innerHTML = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+  hearts.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+
+// NO button runaway
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseover', moveNo);
+noBtn.addEventListener('touchstart', moveNo);
+
+function moveNo() {
+  noBtn.style.top = Math.random() * 80 + 'vh';
+  noBtn.style.left = Math.random() * 80 + 'vw';
+}
+
+// YES button action
+document.getElementById('yesBtn').addEventListener('click', () => {
+  document.getElementById('photos').style.display = 'block';
+  document.getElementById('message').style.display = 'block';
+  document.getElementById('loveAudio').play();
+});
+</script>
+
+</body>
+</html>
